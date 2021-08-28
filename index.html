@@ -41,7 +41,7 @@
             <td> {{student.note_1}} </td>
             <td> {{student.note_2}} </td>
             <td> {{student.note_3}} </td>
-            <td> {{average(student)}} </td>
+            <td> {{student.average}} </td>
           </tr>
         </tbody>
       </table>
@@ -68,10 +68,25 @@
         { name:"Bruna", email:"bruna@mail.com", note_1:9.5, note_2:9.5, note_3:8.5 }
       ];
 
-      $scope.average = (student)=>{
+      const init = ()=>{
+        $scope.students.forEach((student)=>{
+          student.average =  average(student);
+        });
+      };
+
+      // Método local
+      const average = (student)=>{
         let average = (student.note_1 + student.note_2 + student.note_3) /3;
         return average.toFixed(2);
       }
+
+      // Método global
+      // $scope.average = (student)=>{
+      //   let average = (student.note_1 + student.note_2 + student.note_3) /3;
+      //   return average.toFixed(2);
+      // }
+
+      init();
 
     });
 
