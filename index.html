@@ -45,7 +45,47 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="row">
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1"> Adicionar </a>
+      </div>
     </main>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4> Adicionar aluno </h4>
+        <p> Preencha os dados do aluno </p>
+        <div class="row">
+          <div class="input-field col m6 s12">
+            <input type="text" class="validate" ng-model="student.name">
+            <label> Nome </label>
+          </div>
+          <div class="input-field col m6 s6">
+            <input type="text" class="validate" ng-model="student.email">
+            <label> E-mail </label>
+          </div>
+          <div class="input-field col m4 s12">
+            <input type="text" class="validate" ng-model="student.note_1">
+            <label> Primeira nota </label>
+          </div>
+          <div class="input-field col m4 s12">
+            <input type="text" class="validate" ng-model="student.note_2">
+            <label> Segunda nota </label>
+          </div>
+          <div class="input-field col m4 s12">
+            <input type="text" class="validate" ng-model="student.note_3">
+            <label> Terceira nota </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+        <a class="waves-effect waves-light btn" ng-click="addStudent(student)"> Adicionar </a>
+      </div>
+    </div>
+
   </div>
   
   <!--Import jQuery before materialize.js-->
@@ -68,28 +108,45 @@
         { name:"Bruna", email:"bruna@mail.com", note_1:9.5, note_2:9.5, note_3:8.5 }
       ];
 
+      // Método para inicializar calculo de médias no carregamento da app, melhorando performance
       const init = ()=>{
         $scope.students.forEach((student)=>{
           student.average =  average(student);
         });
       };
 
-      // Método local
+      // Método local para calculo de média
       const average = (student)=>{
-        let average = (student.note_1 + student.note_2 + student.note_3) /3;
+        let average = (parseFloat(student.note_1) + parseFloat(student.note_2) + parseFloat(student.note_3)) /3;
         return average.toFixed(2);
       }
 
-      // Método global
+      // Método global para calculo de média
       // $scope.average = (student)=>{
-      //   let average = (student.note_1 + student.note_2 + student.note_3) /3;
+      //   let average = (parseFloat(student.note_1) + parseFloat(student.note_2) + parseFloat(student.note_3)) /3;
       //   return average.toFixed(2);
       // }
 
       init();
 
+      $scope.addStudent = (student)=>{
+        student.average = average(student);
+        $scope.students.push(student);
+
+        $('#modal1').modal('close');
+
+        $scope.student = { name:"", email:"", note_1:"", note_2:"", note_3:"" };
+      }
+
     });
 
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal();
+    });
   </script>
 </body>
 </html>
