@@ -44,7 +44,10 @@
               <td> {{student.note_2}} </td>
               <td> {{student.note_3}} </td>
               <td> {{student.average}} </td>
-              <td> <button class="btn blue" ng-click="editStudent(student)"> Editar </button> </td>
+              <td> 
+                <button class="btn blue" ng-click="editStudent(student)"> Editar </button> 
+                <button class="btn red" ng-click="deleteStudent(student)"> Excluir </button> 
+              </td>
             </tr>
           </tbody>
         </table>
@@ -160,6 +163,17 @@
         editStudentTemp.average = average(student);
 
         $('#modal1').modal('close');
+      }
+
+      $scope.deleteStudent = (student)=>{
+        
+        for (let index in $scope.students) {
+          let currentStudent = $scope.students[index];
+          if (student === currentStudent) {
+            $scope.students.splice(index, 1);
+          }
+        }
+
       }
 
       const cleanForm = ()=>{
