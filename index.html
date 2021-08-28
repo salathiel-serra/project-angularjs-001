@@ -23,66 +23,67 @@
         <input type="text" ng-model="search_student.name" placeholder="Filtrar por nome">
       </div>
 
-      <table class="striped">
-        <thead>
-          <tr>
-            <th> Nome </th>
-            <th> E-mail </th>
-            <th> 1ª Nota </th>
-            <th> 2ª Nota </th>
-            <th> 3ª Nota </th>
-            <th> Média </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="student in students | filter:search_student">
-            <td> {{student.name}} </td>
-            <td> {{student.email}} </td>
-            <td> {{student.note_1}} </td>
-            <td> {{student.note_2}} </td>
-            <td> {{student.note_3}} </td>
-            <td> {{student.average}} </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th> Nome </th>
+              <th> E-mail </th>
+              <th> 1ª Nota </th>
+              <th> 2ª Nota </th>
+              <th> 3ª Nota </th>
+              <th> Média </th>
+              <th> Ação </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="student in students | filter:search_student">
+              <td> {{student.name}} </td>
+              <td> {{student.email}} </td>
+              <td> {{student.note_1}} </td>
+              <td> {{student.note_2}} </td>
+              <td> {{student.note_3}} </td>
+              <td> {{student.average}} </td>
+              <td> <button class="btn blue" ng-click="editStudent(student)"> Editar </button> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="row">
         <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1"> Adicionar </a>
+        <a ng-click="openAddStudent()" class="waves-effect waves-light btn" href="#modal1"> Adicionar </a>
       </div>
     </main>
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <h4> Adicionar aluno </h4>
+        <h4 ng-if="!isEditing"> Adicionar aluno </h4>
+        <h4 ng-if="isEditing"> Editar aluno </h4>
         <p> Preencha os dados do aluno </p>
         <div class="row">
           <div class="input-field col m6 s12">
-            <input type="text" class="validate" ng-model="student.name">
-            <label> Nome </label>
+            <input type="text" class="validate" placeholder="Nome" ng-model="student.name">
           </div>
           <div class="input-field col m6 s6">
-            <input type="text" class="validate" ng-model="student.email">
-            <label> E-mail </label>
+            <input type="text" class="validate" placeholder="E-mail" ng-model="student.email">
           </div>
           <div class="input-field col m4 s12">
-            <input type="text" class="validate" ng-model="student.note_1">
-            <label> Primeira nota </label>
+            <input type="text" class="validate" placeholder="Primeira nota" ng-model="student.note_1">
           </div>
           <div class="input-field col m4 s12">
-            <input type="text" class="validate" ng-model="student.note_2">
-            <label> Segunda nota </label>
+            <input type="text" class="validate" placeholder="Segunda nota" ng-model="student.note_2">
           </div>
           <div class="input-field col m4 s12">
-            <input type="text" class="validate" ng-model="student.note_3">
-            <label> Terceira nota </label>
+            <input type="text" class="validate" placeholder="Terceira nota" ng-model="student.note_3">
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-        <a class="waves-effect waves-light btn" ng-click="addStudent(student)"> Adicionar </a>
+        <a ng-if="!isEditing" class="waves-effect waves-light btn" ng-click="addStudent(student)"> Adicionar </a>
+        <a ng-if="isEditing" class="waves-effect waves-light btn" ng-click="saveStudent(student)"> Salvar </a>
       </div>
     </div>
 
@@ -113,6 +114,8 @@
         $scope.students.forEach((student)=>{
           student.average =  average(student);
         });
+
+        cleanForm(); 
       };
 
       // Método local para calculo de média
@@ -121,22 +124,49 @@
         return average.toFixed(2);
       }
 
-      // Método global para calculo de média
-      // $scope.average = (student)=>{
-      //   let average = (parseFloat(student.note_1) + parseFloat(student.note_2) + parseFloat(student.note_3)) /3;
-      //   return average.toFixed(2);
-      // }
-
-      init();
+      $scope.openAddStudent = ()=>{
+        cleanForm(); 
+        $scope.isEditing = false;
+        $('#modal1').modal('open');
+      }
 
       $scope.addStudent = (student)=>{
         student.average = average(student);
         $scope.students.push(student);
 
         $('#modal1').modal('close');
+        
+        cleanForm(); 
+      }
 
+      $scope.isEditing = false;
+      var editStudentTemp;
+
+      $scope.editStudent = (student)=>{
+        $scope.isEditing = true;
+
+        angular.copy(student, $scope.student);
+
+        $('#modal1').modal('open');
+        editStudentTemp = student;
+      }
+
+      $scope.saveStudent = (student)=>{
+        editStudentTemp.name    = student.name;
+        editStudentTemp.email   = student.email;
+        editStudentTemp.note_1  = student.note_1;
+        editStudentTemp.note_2  = student.note_2;
+        editStudentTemp.note_3  = student.note_3;
+        editStudentTemp.average = average(student);
+
+        $('#modal1').modal('close');
+      }
+
+      const cleanForm = ()=>{
         $scope.student = { name:"", email:"", note_1:"", note_2:"", note_3:"" };
       }
+
+      init();
 
     });
 
