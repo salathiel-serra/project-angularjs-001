@@ -3,41 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Angular JS</title>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 </head>
 <body ng-controller="indexController">
-  <header>
-    <!-- <h2> {{title}} </h2> -->
-    <h2 ng-bind="title"> </h2>
-  </header>
+  <div class="container">
 
-  <main>
-    <table>
-      <thead>
-        <tr>
-          <th> Nome </th>
-          <th> E-mail </th>
-          <th> 1ª Nota </th>
-          <th> 2ª Nota </th>
-          <th> 3ª Nota </th>
-          <th> Média </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="student in students">
-          <td> {{student.name}} </td>
-          <td> {{student.email}} </td>
-          <td> {{student.note_1}} </td>
-          <td> {{student.note_2}} </td>
-          <td> {{student.note_3}} </td>
-          <td> {{average(student)}} </td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
+    <header>
+      <!-- <h2> {{title}} </h2> -->
+      <h2 ng-bind="title"> </h2>
+    </header>
   
+    <main>
+      <table class="striped">
+        <thead>
+          <tr>
+            <th> Nome </th>
+            <th> E-mail </th>
+            <th> 1ª Nota </th>
+            <th> 2ª Nota </th>
+            <th> 3ª Nota </th>
+            <th> Média </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="student in students">
+            <td> {{student.name}} </td>
+            <td> {{student.email}} </td>
+            <td> {{student.note_1}} </td>
+            <td> {{student.note_2}} </td>
+            <td> {{student.note_3}} </td>
+            <td> {{average(student)}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+  
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <!-- Angular JavaScript -->
   <script src="lib/angular/angular.min.js"></script>
+
   <script type="text/javascript">
 
     angular.module("myModule",[])
