@@ -8,15 +8,18 @@
 </head>
 <body ng-controller="indexController">
   <header>
-    <h2> {{title}} </h2>
+    <!-- <h2> {{title}} </h2> -->
+    <h2 ng-bind="title"> </h2>
   </header>
   
   <script src="lib/angular/angular.min.js"></script>
   <script type="text/javascript">
+
     angular.module("myModule",[])
     .controller("indexController", ($scope)=>{
       $scope.title = "Project With Angular JS"
     });
+
   </script>
 </body>
 </html>
