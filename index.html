@@ -31,7 +31,7 @@
           <td> {{student.note_1}} </td>
           <td> {{student.note_2}} </td>
           <td> {{student.note_3}} </td>
-          <td> - - </td>
+          <td> {{average(student)}} </td>
         </tr>
       </tbody>
     </table>
@@ -44,12 +44,17 @@
     .controller("indexController", ($scope)=>{
       $scope.title    = "Application With Angular JS";
       $scope.students = [
-        { name:"João", email:"joao@mail.com", note_1:"7,0", note_2:"8,5", note_3:"6,5" },
-        { name:"Ana", email:"ana@mail.com", note_1:"9,0", note_2:"7,0", note_3:"8,0" },
-        { name:"Mateus", email:"mateus@mail.com", note_1:"5,0", note_2:"5,5", note_3:"10" },
-        { name:"Aline", email:"aline@mail.com", note_1:"10", note_2:"8,5", note_3:"9,5" },
-        { name:"Bruna", email:"bruna@mail.com", note_1:"9,5", note_2:"9,5", note_3:"8,5" }
+        { name:"João", email:"joao@mail.com", note_1:7.0, note_2:8.5, note_3:6.5 },
+        { name:"Ana", email:"ana@mail.com", note_1:9.0, note_2:7.0, note_3:8.0 },
+        { name:"Mateus", email:"mateus@mail.com", note_1:5.0, note_2:5.5, note_3:10 },
+        { name:"Aline", email:"aline@mail.com", note_1:10, note_2:8.5, note_3:9.5 },
+        { name:"Bruna", email:"bruna@mail.com", note_1:9.5, note_2:9.5, note_3:8.5 }
       ];
+
+      $scope.average = (student)=>{
+        let average = (student.note_1 + student.note_2 + student.note_3) /3;
+        return average.toFixed(2);
+      }
 
     });
 
