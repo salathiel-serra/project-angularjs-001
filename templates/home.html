@@ -21,9 +21,10 @@
         <tr>
           <th>Nome</th>
           <th>E-mail</th>
-          <th>1ª Nota</th>
-          <th>2ª Nota</th>
-          <th>3ª Nota</th>
+          <th>1ª Bim</th>
+          <th>2ª Bim</th>
+          <th>3ª Bim</th>
+          <th>4ª Bim</th>
           <th>Média</th>
           <th width="19%;">Ação</th>
         </tr>
@@ -35,6 +36,7 @@
           <td> {{student.note_1}} </td>
           <td> {{student.note_2}} </td>
           <td> {{student.note_3}} </td>
+          <td> {{student.note_4}} </td>
           <td> {{student.average}} </td>
           <td> 
             
@@ -60,14 +62,17 @@
       <div class="input-field col m6 s6">
         <input type="text" class="validate" placeholder="E-mail" ng-model="student.email">
       </div>
-      <div class="input-field col m4 s12">
+      <div class="input-field col m3 s12">
         <input type="text" class="validate" placeholder="Primeira nota" ng-model="student.note_1">
       </div>
-      <div class="input-field col m4 s12">
+      <div class="input-field col m3 s12">
         <input type="text" class="validate" placeholder="Segunda nota" ng-model="student.note_2">
       </div>
-      <div class="input-field col m4 s12">
+      <div class="input-field col m3 s12">
         <input type="text" class="validate" placeholder="Terceira nota" ng-model="student.note_3">
+      </div>
+      <div class="input-field col m3 s12">
+        <input type="text" class="validate" placeholder="Quarta nota" ng-model="student.note_4">
       </div>
     </div>
   </div>
