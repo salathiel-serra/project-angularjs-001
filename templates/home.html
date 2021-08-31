@@ -5,10 +5,10 @@
   <br>
 
   <div class="row">
-    <div class="col s10">
+    <div class="col m10 s8">
       <input type="text" ng-model="search_student.name" placeholder="Filtrar por nome">
     </div>
-    <div class="col s2" style="text-align: right !important;">
+    <div class="col m2 s4" style="text-align: right !important;">
       <!-- Modal Trigger -->
       <a ng-click="openAddStudent()" class="waves-effect waves-light btn" title="Adicionar"> <i class="large material-icons">add</i> </a>
     </div>
@@ -16,7 +16,7 @@
   </div>
 
   <div class="row">
-    <table class="striped">
+    <table class="striped responsive-table">
       <thead>
         <tr>
           <th>Nome</th>
@@ -59,7 +59,7 @@
       <div class="input-field col m6 s12">
         <input type="text" class="validate" placeholder="Nome" ng-model="student.name">
       </div>
-      <div class="input-field col m6 s6">
+      <div class="input-field col m6 s12">
         <input type="text" class="validate" placeholder="E-mail" ng-model="student.email">
       </div>
       <div class="input-field col m3 s12">
