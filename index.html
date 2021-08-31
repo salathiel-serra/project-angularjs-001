@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myModule">
+<html ng-app="myModule">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,100 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Angular JS</title>
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 </head>
-<body ng-controller="indexController">
-  <div class="container">
-
-    <header>
-      <!-- <h2> {{title}} </h2> -->
-      <h2 ng-bind="title"> </h2>
-    </header>
+<body>
+  <div ng-view></div>
   
-    <main>
-      <div class="row">
-        <input type="text" ng-model="search_student.name" placeholder="Filtrar por nome">
-      </div>
-
-      <div class="row">
-        <table class="striped">
-          <thead>
-            <tr>
-              <th> Nome </th>
-              <th> E-mail </th>
-              <th> 1ª Nota </th>
-              <th> 2ª Nota </th>
-              <th> 3ª Nota </th>
-              <th> Média </th>
-              <th> Ação </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="student in students | filter:search_student">
-              <td> {{student.name}} </td>
-              <td> {{student.email}} </td>
-              <td> {{student.note_1}} </td>
-              <td> {{student.note_2}} </td>
-              <td> {{student.note_3}} </td>
-              <td> {{student.average}} </td>
-              <td> 
-                <button class="btn blue" ng-click="editStudent(student)"> Editar </button> 
-                <button class="btn red" ng-click="deleteStudent(student)"> Excluir </button> 
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="row">
-        <!-- Modal Trigger -->
-        <a ng-click="openAddStudent()" class="waves-effect waves-light btn" href="#modal1"> Adicionar </a>
-      </div>
-    </main>
-
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal modal-fixed-footer">
-      <div class="modal-content">
-        <h4 ng-if="!isEditing"> Adicionar aluno </h4>
-        <h4 ng-if="isEditing"> Editar aluno </h4>
-        <p> Preencha os dados do aluno </p>
-        <div class="row">
-          <div class="input-field col m6 s12">
-            <input type="text" class="validate" placeholder="Nome" ng-model="student.name">
-          </div>
-          <div class="input-field col m6 s6">
-            <input type="text" class="validate" placeholder="E-mail" ng-model="student.email">
-          </div>
-          <div class="input-field col m4 s12">
-            <input type="text" class="validate" placeholder="Primeira nota" ng-model="student.note_1">
-          </div>
-          <div class="input-field col m4 s12">
-            <input type="text" class="validate" placeholder="Segunda nota" ng-model="student.note_2">
-          </div>
-          <div class="input-field col m4 s12">
-            <input type="text" class="validate" placeholder="Terceira nota" ng-model="student.note_3">
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-        <a ng-if="!isEditing" class="waves-effect waves-light btn" ng-click="addStudent(student)"> Adicionar </a>
-        <a ng-if="isEditing" class="waves-effect waves-light btn" ng-click="saveStudent(student)"> Salvar </a>
-      </div>
-    </div>
-
-  </div>
-  
-  <!--Import jQuery before materialize.js-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   <script src="js/materialize/init.js"></script>
   
   <!-- Angular JavaScript -->
   <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-route.min.js"></script>
+  
   <script src="js/app/app.js"></script>
   <script src="js/app/controllers.js"></script>
 </body>
