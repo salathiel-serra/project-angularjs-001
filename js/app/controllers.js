@@ -1,6 +1,6 @@
 angular.module("myModule")
 .controller("indexController", function($scope){
-  $scope.title    = "Application With Angular JS";
+  $scope.title    = "Lista de alunos";
   $scope.students = [
     { name:"João", email:"joao@mail.com", note_1:7.0, note_2:8.5, note_3:6.5 },
     { name:"Ana", email:"ana@mail.com", note_1:9.0, note_2:7.0, note_3:8.0 },
@@ -79,4 +79,7 @@ angular.module("myModule")
 
   init();
 
+})
+.controller("contactController", function($scope){
+  $scope.title = "Contato";
 });
