@@ -6,7 +6,8 @@ angular.module("myModule",["ngRoute"])
 		controller:"indexController"
 	})
 	.when("/contact",{
-		templateUrl:"templates/contact.html"
+		templateUrl:"templates/contact.html",
+		controller:"contactController"
 	});
 
 	$routeProvider.otherwise({redirectTo:"/home"});
