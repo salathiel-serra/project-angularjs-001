@@ -1,0 +1,16 @@
+body {
+  background-color: #D3D3D3;
+}
+
+#header {
+  margin-bottom: 1%;
+}
+
+.container {
+  background-color: #fff;
+  padding: 15px;
+}
+
+.nav-wrapper {
+  background-color: #808080;
+}
