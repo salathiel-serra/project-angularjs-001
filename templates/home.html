@@ -1,11 +1,22 @@
-<div ng-include="'templates/_nav.html'"></div>
+<!-- <div ng-include="'templates/_nav.html'"></div> -->
 <main class="container">
+  <h2>{{title}}</h2>
+
+  <br>
+
   <div class="row">
-    <input type="text" ng-model="search_student.name" placeholder="Filtrar por nome">
+    <div class="col s10">
+      <input type="text" ng-model="search_student.name" placeholder="Filtrar por nome">
+    </div>
+    <div class="col s2" style="text-align: right !important;">
+      <!-- Modal Trigger -->
+      <a ng-click="openAddStudent()" class="waves-effect waves-light btn" title="Adicionar"> <i class="large material-icons">add</i> </a>
+    </div>
+    
   </div>
 
   <div class="row">
-    <table class="striped">
+    <table class="striped centered">
       <thead>
         <tr>
           <th>Nome</th>
@@ -26,17 +37,12 @@
           <td> {{student.note_3}} </td>
           <td> {{student.average}} </td>
           <td> 
-            <button class="btn blue" ng-click="editStudent(student)"> Editar </button> 
-            <button class="btn red" ng-click="deleteStudent(student)"> Excluir </button> 
+            <button class="btn blue btn-small" ng-click="editStudent(student)" title="Editar"> <i class="small material-icons">edit</i> </button> 
+            <button class="btn red" ng-click="deleteStudent(student)" title="Remover"> <i class="small material-icons">delete</i> </button> 
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="row">
-    <!-- Modal Trigger -->
-    <a ng-click="openAddStudent()" class="waves-effect waves-light btn"> Adicionar </a>
   </div>
 </main>
 
