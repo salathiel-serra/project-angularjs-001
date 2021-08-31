@@ -16,7 +16,7 @@
   </div>
 
   <div class="row">
-    <table class="striped centered">
+    <table class="striped">
       <thead>
         <tr>
           <th>Nome</th>
@@ -25,7 +25,7 @@
           <th>2ª Nota</th>
           <th>3ª Nota</th>
           <th>Média</th>
-          <th>Ação</th>
+          <th width="19%;">Ação</th>
         </tr>
       </thead>
       <tbody>
@@ -37,8 +37,9 @@
           <td> {{student.note_3}} </td>
           <td> {{student.average}} </td>
           <td> 
-            <button class="btn blue btn-small" ng-click="editStudent(student)" title="Editar"> <i class="small material-icons">edit</i> </button> 
-            <button class="btn red" ng-click="deleteStudent(student)" title="Remover"> <i class="small material-icons">delete</i> </button> 
+            
+            <button class="waves-effect waves-light btn blue " ng-click="editStudent(student)" title="Editar"> <i class="small material-icons">edit</i> </button> 
+            <button class="waves-effect waves-light btn red " ng-click="deleteStudent(student)" title="Remover"> <i class="small material-icons ">delete</i> </button> 
           </td>
         </tr>
       </tbody>
