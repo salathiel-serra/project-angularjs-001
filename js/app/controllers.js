@@ -1,5 +1,5 @@
 angular.module("myModule")
-.controller("indexController", ($scope)=>{
+.controller("indexController", function($scope){
   $scope.title    = "Application With Angular JS";
   $scope.students = [
     { name:"João", email:"joao@mail.com", note_1:7.0, note_2:8.5, note_3:6.5 },
@@ -10,8 +10,8 @@ angular.module("myModule")
   ];
 
   // Método para inicializar calculo de médias no carregamento da app, melhorando performance
-  const init = ()=>{
-    $scope.students.forEach((student)=>{
+  const init = function(){
+    $scope.students.forEach(function(student){
       student.average =  average(student);
     });
 
@@ -19,22 +19,22 @@ angular.module("myModule")
   };
 
   // Método local para calculo de média
-  const average = (student)=>{
+  const average = function(student){
     let average = (parseFloat(student.note_1) + parseFloat(student.note_2) + parseFloat(student.note_3)) /3;
     return average.toFixed(2);
   }
 
-  $scope.openAddStudent = ()=>{
+  $scope.openAddStudent = function(){
     cleanForm(); 
     $scope.isEditing = false;
-    $('#modal1').modal('open');
+    $('#modal1').openModal();
   }
 
-  $scope.addStudent = (student)=>{
+  $scope.addStudent = function(student){
     student.average = average(student);
     $scope.students.push(student);
 
-    $('#modal1').modal('close');
+    $('#modal1').closeModal();
     
     cleanForm(); 
   }
@@ -42,16 +42,16 @@ angular.module("myModule")
   $scope.isEditing = false;
   var editStudentTemp;
 
-  $scope.editStudent = (student)=>{
+  $scope.editStudent = function(student){
     $scope.isEditing = true;
 
     angular.copy(student, $scope.student);
 
-    $('#modal1').modal('open');
+    $('#modal1').openModal();
     editStudentTemp = student;
   }
 
-  $scope.saveStudent = (student)=>{
+  $scope.saveStudent = function(student){
     editStudentTemp.name    = student.name;
     editStudentTemp.email   = student.email;
     editStudentTemp.note_1  = student.note_1;
@@ -59,10 +59,10 @@ angular.module("myModule")
     editStudentTemp.note_3  = student.note_3;
     editStudentTemp.average = average(student);
 
-    $('#modal1').modal('close');
+    $('#modal1').closeModal();
   }
 
-  $scope.deleteStudent = (student)=>{
+  $scope.deleteStudent = function(student){
     
     for (let index in $scope.students) {
       let currentStudent = $scope.students[index];
@@ -73,7 +73,7 @@ angular.module("myModule")
 
   }
 
-  const cleanForm = ()=>{
+  const cleanForm = function(){
     $scope.student = { name:"", email:"", note_1:"", note_2:"", note_3:"" };
   }
 
